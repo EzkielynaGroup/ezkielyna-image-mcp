@@ -11,7 +11,7 @@ Example: *"My product photo is `~/Shop/mug.jpg` and the logo is `~/Shop/logo.png
 - Results can be edited again: the assistant just passes the previous result path.
 - Paid calls are capped per session, the API key is never printed, and existing files are never overwritten.
 
-> **npm package: not published yet.** Install from source as shown below. There is no `npx ezkielyna-image-mcp` for now.
+> **npm:** [`ezkielyna-image-mcp`](https://www.npmjs.com/package/ezkielyna-image-mcp). Your app can start it with `npx -y ezkielyna-image-mcp`, no clone needed.
 
 ## Requirements
 
@@ -19,7 +19,11 @@ Example: *"My product photo is `~/Shop/mug.jpg` and the logo is `~/Shop/logo.png
 2. An **Ezkielyna API key in group Media** (the **Auto** group also includes image models). Buy API Credit at [ezkielyna.store](https://ezkielyna.store/beli-api-key?utm_source=github&utm_medium=readme&utm_campaign=ezkielyna-image-mcp) (from $0.5, QRIS/DANA/GoPay/USDT), redeem it under **Wallet** at [api.ezkielyna.store](https://api.ezkielyna.store), then create a key under **API Keys**. Standard/Premium keys cannot use image models.
 3. Some balance. Prices per image are shown by the `list_image_models` tool and on [ezkielyna.store/models](https://ezkielyna.store/models?utm_source=github&utm_medium=readme&utm_campaign=ezkielyna-image-mcp).
 
-## Install from source
+## Install
+
+**With npx (recommended):** nothing to install. The configs below run `npx -y ezkielyna-image-mcp`, which downloads the package (one file, no dependencies) on first start.
+
+**From source** (to read or change the code):
 
 ```bash
 git clone https://github.com/EzkielynaGroup/ezkielyna-image-mcp.git
@@ -28,7 +32,7 @@ node --test test/        # optional: runs against a local mock, no network, no c
 pwd                      # the full path of ezkielyna-image-mcp.mjs is <this folder>/ezkielyna-image-mcp.mjs
 ```
 
-On Windows, write paths in JSON with forward slashes (`C:/Users/you/ezkielyna-image-mcp/ezkielyna-image-mcp.mjs`) or double backslashes.
+On Windows, if the app cannot start `npx`, use `"command": "cmd"` with `"args": ["/c", "npx", "-y", "ezkielyna-image-mcp"]`. For a source install, write paths in JSON with forward slashes (`C:/Users/you/ezkielyna-image-mcp/ezkielyna-image-mcp.mjs`) or double backslashes.
 
 ## Configuration (environment)
 
@@ -42,7 +46,7 @@ On Windows, write paths in JSON with forward slashes (`C:/Users/you/ezkielyna-im
 
 ## Add it to your app
 
-Replace `/path/to/ezkielyna-image-mcp.mjs` with your path and `sk-...` with your Media key.
+Replace `sk-...` with your Media key. Installed from source? Use `"command": "node"` with `"args": ["/path/to/ezkielyna-image-mcp.mjs"]` instead of `npx`.
 
 **Claude Desktop**: Settings → Developer → Edit Config (`claude_desktop_config.json`), then fully quit and reopen Claude Desktop.
 
@@ -50,8 +54,8 @@ Replace `/path/to/ezkielyna-image-mcp.mjs` with your path and `sk-...` with your
 {
   "mcpServers": {
     "ezkielyna-image": {
-      "command": "node",
-      "args": ["/path/to/ezkielyna-image-mcp.mjs"],
+      "command": "npx",
+      "args": ["-y", "ezkielyna-image-mcp"],
       "env": { "EZKIELYNA_API_KEY": "sk-..." }
     }
   }
@@ -61,7 +65,7 @@ Replace `/path/to/ezkielyna-image-mcp.mjs` with your path and `sk-...` with your
 **Claude Code**
 
 ```bash
-claude mcp add ezkielyna-image -e EZKIELYNA_API_KEY=sk-... -- node /path/to/ezkielyna-image-mcp.mjs
+claude mcp add ezkielyna-image -e EZKIELYNA_API_KEY=sk-... -- npx -y ezkielyna-image-mcp
 ```
 
 Add `--scope user` to make it available in every project. Check with `claude mcp list`.
@@ -76,7 +80,7 @@ Add `--scope user` to make it available in every project. Check with `claude mcp
   "mcp": {
     "ezkielyna-image": {
       "type": "local",
-      "command": ["node", "/path/to/ezkielyna-image-mcp.mjs"],
+      "command": ["npx", "-y", "ezkielyna-image-mcp"],
       "enabled": true,
       "environment": { "EZKIELYNA_API_KEY": "sk-..." }
     }
@@ -121,9 +125,9 @@ The tests spawn the server over stdio against a local mock gateway: no internet,
 
 Server MCP untuk **membuat dan mengedit gambar dari file di komputer** lewat asisten AI (Claude Desktop, Claude Code, Cursor, OpenCode). Contoh: *"Tempelkan logo `~/Toko/logo.png` ke foto `~/Toko/kaos.jpg` di dada kiri, simpan sebagai kaos-logo."*
 
-- Cukup **Node.js 18+**, satu file, tanpa instal paket. **Paket npm belum dirilis**: pasang dari source (`git clone`, lihat di atas).
+- Cukup **Node.js 18+**. Tersedia di npm: aplikasi menjalankannya dengan `npx -y ezkielyna-image-mcp`, tanpa clone. Bisa juga dari source (`git clone`, lihat di atas).
 - Butuh **API key grup Media** (atau **Auto**) dari Ezkielyna API. Beli saldo mulai $0.5 lewat QRIS/DANA/GoPay: [ezkielyna.store/beli-api-key](https://ezkielyna.store/beli-api-key?utm_source=github&utm_medium=readme&utm_campaign=ezkielyna-image-mcp).
-- Konfigurasi untuk tiap aplikasi sama seperti contoh di atas; ganti path file dan `sk-...`.
+- Konfigurasi untuk tiap aplikasi sama seperti contoh di atas; cukup ganti `sk-...`.
 - Panduan lengkap berbahasa Indonesia: [ezkielyna.store/panduan/mcp-gambar](https://ezkielyna.store/panduan/mcp-gambar?utm_source=github&utm_medium=readme&utm_campaign=ezkielyna-image-mcp).
 
 ## License
