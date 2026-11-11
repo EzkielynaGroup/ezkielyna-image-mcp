@@ -11,7 +11,7 @@ Example: *"My product photo is `~/Shop/mug.jpg` and the logo is `~/Shop/logo.png
 - Results can be edited again: the assistant just passes the previous result path.
 - Paid calls are capped per session, the API key is never printed, and existing files are never overwritten.
 
-> **npm:** [`ezkielyna-image-mcp`](https://www.npmjs.com/package/ezkielyna-image-mcp). Your app can start it with `npx -y ezkielyna-image-mcp`, no clone needed.
+> **npm:** [`ezkielyna-image-mcp`](https://www.npmjs.com/package/ezkielyna-image-mcp). Your app can start it with `npx -y ezkielyna-image-mcp`, no clone needed. Listed in the [official MCP registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.EzkielynaGroup/ezkielyna-image-mcp) as `io.github.EzkielynaGroup/ezkielyna-image-mcp`.
 
 ## Requirements
 
