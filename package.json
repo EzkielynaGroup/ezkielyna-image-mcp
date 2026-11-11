@@ -1,6 +1,6 @@
 {
   "name": "ezkielyna-image-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP server to create and edit images with the Ezkielyna API from local files",
   "mcpName": "io.github.EzkielynaGroup/ezkielyna-image-mcp",
   "type": "module",
