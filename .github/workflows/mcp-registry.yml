@@ -26,10 +26,24 @@ jobs:
           echo "server.json $want, npm latest $have"
           [ "$want" = "$have" ] || { echo "Publish $want to npm first."; exit 1; }
 
+      - name: Skip if this version is already in the registry
+        id: listed
+        run: |
+          set -euo pipefail
+          name="$(node -p 'require("./server.json").name')"; ver="$(node -p 'require("./server.json").version')"
+          if curl -fsS "https://registry.modelcontextprotocol.io/v0/servers?search=${name}" \
+             | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const hit=(j.servers||[]).some(x=>{const v=x.server||x;return v.name===process.argv[1]&&v.version===process.argv[2]});process.exit(hit?0:1)})' "$name" "$ver"; then
+            echo "already=true" >> "$GITHUB_OUTPUT"; echo "$name $ver is already registered, nothing to do."
+          else
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install cosign
+        if: steps.listed.outputs.already != 'true'
         uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
 
       - name: Download and verify mcp-publisher
+        if: steps.listed.outputs.already != 'true'
         run: |
           set -euo pipefail
           archive="mcp-publisher_linux_amd64.tar.gz"
@@ -44,7 +58,9 @@ jobs:
           tar xzf "$archive" mcp-publisher
 
       - name: Login (GitHub OIDC)
+        if: steps.listed.outputs.already != 'true'
         run: ./mcp-publisher login github-oidc
 
       - name: Publish server.json
+        if: steps.listed.outputs.already != 'true'
         run: ./mcp-publisher publish
