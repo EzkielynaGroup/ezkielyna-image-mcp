@@ -2,14 +2,40 @@
   "name": "ezkielyna-image-mcp",
   "version": "1.0.2",
   "description": "MCP server to create and edit images with the Ezkielyna API from local files",
+  "mcpName": "io.github.EzkielynaGroup/ezkielyna-image-mcp",
   "type": "module",
-  "bin": { "ezkielyna-image-mcp": "ezkielyna-image-mcp.mjs" },
-  "files": ["ezkielyna-image-mcp.mjs"],
-  "engines": { "node": ">=18" },
-  "scripts": { "test": "node --test test/" },
-  "keywords": ["mcp", "model-context-protocol", "image-generation", "image-editing", "claude-desktop", "claude-code", "cursor", "opencode"],
-  "repository": { "type": "git", "url": "git+https://github.com/EzkielynaGroup/ezkielyna-image-mcp.git" },
-  "homepage": "https://github.com/EzkielynaGroup/ezkielyna-image-mcp#readme",
+  "bin": {
+    "ezkielyna-image-mcp": "ezkielyna-image-mcp.mjs"
+  },
+  "files": [
+    "ezkielyna-image-mcp.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "image-generation",
+    "image-editing",
+    "claude-desktop",
+    "claude-code",
+    "cursor",
+    "opencode"
+  ],
+  "author": "Ezekiel Lieberhart (Ezkielyna)",
   "license": "MIT",
-  "private": true
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EzkielynaGroup/ezkielyna-image-mcp.git"
+  },
+  "homepage": "https://github.com/EzkielynaGroup/ezkielyna-image-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/EzkielynaGroup/ezkielyna-image-mcp/issues"
+  }
 }

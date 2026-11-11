@@ -1,0 +1,42 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.EzkielynaGroup/ezkielyna-image-mcp",
+  "title": "Ezkielyna Image",
+  "description": "Generate and edit images from local files via Ezkielyna API (prepaid key required).",
+  "repository": {
+    "url": "https://github.com/EzkielynaGroup/ezkielyna-image-mcp",
+    "source": "github"
+  },
+  "version": "1.0.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "ezkielyna-image-mcp",
+      "version": "1.0.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "EZKIELYNA_API_KEY",
+          "description": "Ezkielyna API key (Media or Auto group)",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "EZKIELYNA_IMAGE_DIR",
+          "description": "Folder where images are saved",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "EZKIELYNA_MAX_IMAGES",
+          "description": "Paid images per session (default 30)",
+          "isRequired": false,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
